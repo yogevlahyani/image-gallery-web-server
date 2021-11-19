@@ -1,34 +1,51 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Getting Started
 
-First, run the development server:
+First, add .env file by creating `.env`, in this example you can copy `.env.example` contents or simply rename it.
 
 ```bash
-npm run dev
-# or
+# copy file
+cp .env.example .env
+# or rename file
+mv .env.example .env
+```
+
+Then, run the development server:
+
+```bash
 yarn dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+# Structure
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+You can find the API proxy in `pages/api/images`.
+You can find the state management and client side components files in src.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+# Assumptions
 
-## Learn More
+I was thinking of using a real database with docker (docker-compose for development) but in second though, I guess it's a bit of an overhead for this kind of assignment.<br />
+So I decided to just use in-memory database. (Map or Set).
+<br />
+P.S - I've had a bit hard times to keep persistency with in-memory store using Map and I believe it's better using external storage such as redis or actual database.
 
-To learn more about Next.js, take a look at the following resources:
+## Things I couldn't figure out..
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. I haven't found a way to get offset and limit of images, I thought of maybe using virtualization or infinite scroll but wasn't sure what is expected from me.<br />
+P.S - query params like `?page=X` or `?limit=X` or `?offset=X` wasn't working for me..
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+2. I used the `url` as the identifier of the images since there's no `id`.<br />
+I was thinking to map the images response and add a generated uuid to each image but wasn't sure if it worths the effort and the best practice for this use-case.
 
-## Deploy on Vercel
+## Tests
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+A Tech Debt I didn't get to..
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Libraries I used
+- [nextjs](https://nextjs.org)
+- [chakra-ui](https://chakra-ui.com)
+- [framer-motion](https://www.framer.com/motion)
+- [phosphoricons](https://phosphoricons.com)
+- [next-session](https://github.com/hoangvvo/next-session)
